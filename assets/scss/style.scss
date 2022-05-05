@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Lakki+Reddy&family=Montserrat:wght@400;700&display=swap');
 @import 'colors';
+
 * {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+@mixin spaces ($margin, $padding) {
+    margin: $margin;
+    padding: $padding;
+}
+
+
+$estilos: (alineación: center,
+    tamaniofuente: 20px,
+    radioborde: 20px,
+);
 
 body {
     display: grid;
@@ -46,10 +58,9 @@ header {
 
         .navBarBrand {
             display: inline-block;
-            margin: 15px;
+            @include spaces (15px, 0);
             width: 100px;
             height: auto;
-            padding: 0;
         }
 
         .navBarNav {
@@ -59,7 +70,7 @@ header {
                 display: inline-block;
                 padding: 15px;
                 line-height: 50px;
-                font-size: 20px;
+                font-size: map-get($estilos, tamaniofuente);
                 background-color: $color-secondary;
                 transition: background-color 0.1s;
             }
@@ -153,12 +164,11 @@ header {
 
 .paragraph {
     display: inline-block;
-    margin: 1rem;
+    @include spaces (1rem, 30px);
     border: 5px dotted $color-primary;
-    padding: 30px;
     text-align: justify;
-    font-size: 20px;
-    border-radius: 20px;
+    font-size: map-get($estilos, tamaniofuente);
+    border-radius: map-get($estilos, radioborde);
 
 }
 
@@ -182,9 +192,8 @@ footer {
     .navBar {
         text-align: center;
         max-width: 1200px;
-        margin: auto;
+        @include spaces (auto, 15px 0px);
         width: 100%;
-        padding: 15px 0px;
         margin-top: 10px;
         border-radius: 12px;
         align-items: stretch;
@@ -199,7 +208,7 @@ footer {
                 display: inline-block;
                 padding: 15px;
                 line-height: 50px;
-                font-size: 20px;
+                font-size: map-get($estilos, tamaniofuente);
             }
 
             .footerBarLink {
@@ -237,11 +246,10 @@ footer {
     background-color: $color-secondary;
     width: 15rem;
     text-align: center;
-    border-radius: 20px;
-    margin: 1rem;
+    border-radius: map-get($estilos, radioborde);
+    @include spaces (1rem, auto);
     align-content: center;
-    padding: auto;
-    border: #D72E18;
+    border: $color-primary;
     transition: width 0.5s;
 }
 
@@ -253,19 +261,13 @@ footer {
 }
 
 .card:hover {
-    width: 17.5rem;
+    width: 16.5rem;
 }
-
-/* @media screen and (min-width 720){
-    .card {
-        min-width: 1rem;
-    }
-} */
 
 .card__image {
     display: inline-block;
     width: 100;
-    border-radius: 20px;
+    border-radius: map-get($estilos, radioborde);
 }
 
 
@@ -300,11 +302,9 @@ footer {
 .card__description {
     display: inline-flex;
     color: $color-text-bar;
-    margin-bottom: 5px;
-    margin: 5px;
+    @include spaces (5px, 2%);
     font-size: 1em;
     text-align: center;
-    padding: 2%;
 }
 
 @media (max-width: 576px) {
@@ -328,8 +328,14 @@ footer {
     border: 1rem;
 }
 
+.btncancel {
+    @extend .btn;
+    background-color: $color-secondary;
+
+}
+
 .btn:hover {
-    background-color: #28A89C;
+    background-color: $color-accent;
 }
 
 .galeria {
@@ -342,3 +348,4 @@ footer {
     max-width: 30%;
     max-height: 250px;
 }
+
